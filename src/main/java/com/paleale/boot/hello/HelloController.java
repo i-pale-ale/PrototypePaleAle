@@ -1,6 +1,7 @@
 package com.paleale.boot.hello;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,6 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 	private static final Logger logger = LoggerFactory.getLogger("HelloController.class");
+	
+	@Value("${activeProfile}")
+	private String activeProfile;
+	
 	@RequestMapping("/hi")
 	public @ResponseBody String hellowWorld(){
 		logger.debug("--Application hi test--");
@@ -16,6 +21,6 @@ public class HelloController {
 		}catch(Exception e) {
 			logger.error("testing hi error", e);
 		}
-		return "Hello World!";
+		return "Hello " +activeProfile+"!";
 	}
 }
