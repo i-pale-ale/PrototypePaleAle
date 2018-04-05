@@ -4,13 +4,27 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.paleale.boot</groupId>
-	<artifactId>firstBootArtifact</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<artifactId>ipa</artifactId>
+	<version>1.0</version>
+	<packaging>war</packaging>
 
 	<name>PrototypePaleAleBoot-1</name>
 	<description>Demo project for Spring Boot</description>
-
+	
+	<profiles>
+	<profile>
+		    <id>dev</id>
+		    <properties>
+		        <activatedProperties>dev</activatedProperties>
+		    </properties>
+		</profile>
+		<profile>
+		    <id>release</id>
+		    <properties>
+		        <activatedProperties>prod</activatedProperties>
+		    </properties>
+		</profile>
+	</profiles>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -25,6 +39,11 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -62,6 +81,13 @@
     </dependency>
 	</dependencies>
 
-
+	<build>
+	    <resources>
+	        <resource>
+	            <directory>src/main/resources</directory>
+	            <filtering>true</filtering>
+	        </resource>
+    </resources>
+	</build>
 
 </project>
